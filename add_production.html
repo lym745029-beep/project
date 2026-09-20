@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Production</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"></head>
+<body><div class="container mt-4">
+<h2>Add Production Data</h2>
+<form method="POST">
+    <select class="form-control mb-2" name="well_id" id="well_id" onchange="document.getElementsByName('well_name')[0].value=this.options[this.selectedIndex].text" required>
+        <option value="">Select Well</option>
+        {% for well in wells %}<option value="{{ well.id }}">{{ well.name }}</option>{% endfor %}
+    </select>
+    <input type="hidden" name="well_name">
+    <input class="form-control mb-2" type="date" name="prod_date" value="{{ today }}" required>
+    <input class="form-control mb-2" type="number" step="0.01" name="oil_barrels" placeholder="Oil Barrels" required>
+    <input class="form-control mb-2" type="number" step="0.01" name="gas_mcf" placeholder="Gas MCF" required>
+    <button class="btn btn-success">Save Production</button>
+</form></div></body></html>
